@@ -1,4 +1,10 @@
-FROM node:7.9.0-alpine
+FROM node:9-alpine
+
+RUN apk update && \
+    apk upgrade && \
+    apk add --update ca-certificates && \
+    apk add chromium --update-cache --repository http://nl.alpinelinux.org/alpine/edge/community \
+    rm -rf /var/cache/apk/*
 
 # Set environment variable
 ARG RUN_AS=node
@@ -9,7 +15,7 @@ RUN apk add --no-cache tzdata
 
 RUN cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 
-RUN apk update && apk add py-pygments chromium && rm -rf /var/cache/apk/*
+RUN apk update && apk add py-pygments && rm -rf /var/cache/apk/*
 # Download and install hugo
 RUN mkdir /usr/local/hugo
 
