@@ -3,7 +3,7 @@ FROM node:9-alpine
 RUN apk update && \
     apk upgrade && \
     apk add --update ca-certificates && \
-    apk add chromium --update-cache --repository http://nl.alpinelinux.org/alpine/edge/community \
+    apk add chromium --update-cache --repository http://nl.alpinelinux.org/alpine/edge/community && \
     rm -rf /var/cache/apk/*
 
 # Set environment variable
@@ -11,11 +11,15 @@ ARG RUN_AS=node
 ARG HUGO_VERSION=0.39
 ARG HUGO_BINARY="hugo_${HUGO_VERSION}_Linux-64bit"
 
-RUN apk add --no-cache tzdata
+RUN apk update && \
+    apk upgrade && \
+    apk add --no-cache tzdata && \
+    rm -rf /var/cache/apk/*
 
 RUN cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 
 RUN apk update && apk add py-pygments && rm -rf /var/cache/apk/*
+
 # Download and install hugo
 RUN mkdir /usr/local/hugo
 
