@@ -18,7 +18,11 @@ RUN apk update && \
 
 RUN cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 
-RUN apk update && apk add py-pygments && rm -rf /var/cache/apk/*
+RUN apk add --no-cache python py-pygments && \
+    python -m ensurepip && \
+    rm -r /usr/lib/python*/ensurepip && \
+    pip install --upgrade pip setuptools && \
+    rm -r /root/.cache
 
 # Download and install hugo
 RUN mkdir /usr/local/hugo
