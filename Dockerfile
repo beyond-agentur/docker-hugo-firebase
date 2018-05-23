@@ -13,6 +13,8 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 # Puppeteer v0.13.0 works with Chromium 64.
 RUN yarn add puppeteer@0.13.0
 
+RUN mkdir /app && mkdir /app/functions
+
 # Add user so we don't need --no-sandbox.
 RUN addgroup -S pptruser && adduser -S -g pptruser pptruser \
     && mkdir -p /home/pptruser/Downloads \
@@ -50,8 +52,6 @@ RUN tar xzf /usr/local/hugo/${HUGO_BINARY}.tar.gz -C /usr/local/hugo/ \
     && rm /usr/local/hugo/${HUGO_BINARY}.tar.gz
 
 RUN npm install -g gulp hugulp firebase-tools
-
-RUN mkdir /app && mkdir /app/functions
 
 COPY package.json /app/
 
