@@ -21,8 +21,6 @@ RUN addgroup -S pptruser && adduser -S -g pptruser pptruser \
     && chown -R pptruser:pptruser /home/pptruser \
     && chown -R pptruser:pptruser /app
 
-USER pptruser
-
 # Set environment variable
 ARG RUN_AS=node
 ARG HUGO_VERSION=0.39
@@ -52,6 +50,8 @@ RUN tar xzf /usr/local/hugo/${HUGO_BINARY}.tar.gz -C /usr/local/hugo/ \
     && rm /usr/local/hugo/${HUGO_BINARY}.tar.gz
 
 RUN npm install -g gulp hugulp firebase-tools
+
+USER pptruser
 
 COPY package.json /app/
 
