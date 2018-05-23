@@ -57,6 +57,8 @@ COPY package.json /app/
 
 COPY functions/package.json /app/functions
 
+RUN chown -R pptruser:pptruser /app
+
 WORKDIR /app
 
 RUN npm i
