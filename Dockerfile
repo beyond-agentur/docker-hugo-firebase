@@ -1,4 +1,4 @@
-FROM node
+FROM node:stretch
 
 ENV USR_LOCAL=/usr/local
 ENV APP_DIR=$USR_LOCAL/app
@@ -23,6 +23,7 @@ RUN apt-get update && apt-get install -y wget --no-install-recommends \
 
 # Puppeteer v0.13.0 works with Chromium 64.
 RUN yarn add puppeteer@0.13.0
+RUN npm install -g --unsafe-perm=true gulp hugulp firebase-tools
 
 RUN mkdir $APP_DIR && mkdir $APP_DIR/functions
 
@@ -42,8 +43,6 @@ RUN tar xzf /usr/local/hugo/${HUGO_BINARY}.tar.gz -C /usr/local/hugo/ \
     && rm /usr/local/hugo/${HUGO_BINARY}.tar.gz
 
 RUN chmod 775 -R $USR_LOCAL
-
-RUN npm install -g --unsafe-perm=true gulp hugulp firebase-tools
 
 COPY package.json $APP_DIR
 
