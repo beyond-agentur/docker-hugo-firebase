@@ -22,14 +22,14 @@ RUN apt-get update && apt-get install -y wget --no-install-recommends \
     && rm -rf /src/*.deb
 
 # Puppeteer v0.13.0 works with Chromium 64.
-RUN yarn add puppeteer@0.13.0
+RUN yarn add puppeteer@1.10.0
 RUN npm install -g --unsafe-perm=true gulp hugulp firebase-tools
 
 RUN mkdir $APP_DIR && mkdir $APP_DIR/functions
 
 # Set environment variable
 ARG RUN_AS=node
-ARG HUGO_VERSION=0.52
+ARG HUGO_VERSION=0.53
 ARG HUGO_BINARY="hugo_extended_${HUGO_VERSION}_Linux-64bit"
 
 # Download and install hugo
