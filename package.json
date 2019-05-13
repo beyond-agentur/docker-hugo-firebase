@@ -59,6 +59,7 @@
     "pkginfo": "^0.4.1",
     "pump": "^3.0.0",
     "rev-del": "^2.0.0",
-    "run-sequence": "^2.2.1"
+    "run-sequence": "^2.2.1",
+    "grpc": "^1.20.3"
   }
 }
