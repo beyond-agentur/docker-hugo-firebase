@@ -29,7 +29,7 @@ RUN mkdir $APP_DIR && mkdir $APP_DIR/functions
 
 # Set environment variable
 ARG RUN_AS=node
-ARG HUGO_VERSION=0.55.5
+ARG HUGO_VERSION=0.62.2
 ARG HUGO_BINARY="hugo_extended_${HUGO_VERSION}_Linux-64bit"
 
 # Download and install hugo
